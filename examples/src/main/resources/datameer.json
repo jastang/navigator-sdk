@@ -1,0 +1,131 @@
+{
+  "workbook": {
+    "_version": "5.11.0",
+    "dataPermission": {
+      "groups": {},
+      "owner": "system",
+      "permissionForOthers": false
+    },
+    "errorHandling": {
+      "maxLogErrors": 1000,
+      "mode": "IGNORE"
+    },
+    "file": {
+      "createdAt": "2015-12-07T09:08:11.557+01:00",
+      "description": "",
+      "extension": "WORKBOOK",
+      "folder": [
+        "/Analytics/Workbooks",
+        "8bbdb7a0-7ddc-4225-85fe-95d001caedb9"
+      ],
+      "modifiedAt": "2015-12-07T09:08:11.568+01:00",
+      "name": "apache_log_wb",
+      "permission": {
+        "groups": {},
+        "owner": "system",
+        "permissionForOthers": {
+          "executable": true,
+          "readable": true,
+          "writable": true
+        },
+        "publiclyShared": false
+      },
+      "uuid": "1a552255-3f2a-407d-9270-2813af4c1a74"
+    },
+    "jobConfiguration": {
+      "dataRetentionPolicy": {
+        "_type": "PurgeAfter",
+        "minimumToKeep": 1
+      },
+      "hadoopProperties": {},
+      "logging": {
+        "properties": {}
+      },
+      "triggering": {
+        "_type": "DataDrivenTriggering",
+        "sheets": {}
+      }
+    },
+    "notification": {
+      "emailsInCaseOfFailure": [],
+      "emailsInCaseOfSuccess": []
+    },
+    "sheets": [
+      {
+        "_type": "DataSourceReferenceSheet",
+        "uuid": "69aee54f-44f1-4d9a-a259-2fba7aa91a69",
+        "columns": [
+          {
+            "id": "remoteHost",
+            "name": "remoteHost",
+            "position": 0
+          },
+          {
+            "id": "logName",
+            "name": "logName",
+            "position": 1
+          },
+          {
+            "id": "remoteUser",
+            "name": "remoteUser",
+            "position": 2
+          },
+          {
+            "id": "requestTime",
+            "name": "requestTime",
+            "position": 3
+          },
+          {
+            "id": "request",
+            "name": "request",
+            "position": 4
+          },
+          {
+            "id": "status",
+            "name": "status",
+            "position": 5
+          },
+          {
+            "id": "bytesSent",
+            "name": "bytesSent",
+            "position": 6
+          }
+        ],
+        "identifier": "7f170571-06e1-4655-b9b8-823b228df25c",
+        "kept": false,
+        "name": "apache_log",
+        "position": 0
+      },
+      {
+        "_type": "FormulaSheet",
+        "columns": [
+          {
+            "formula": "=GROUPBY(#apache_log!status)",
+            "id": "0",
+            "name": "A",
+            "position": 0
+          },
+          {
+            "formula": "=GROUPCOUNT()",
+            "id": "1",
+            "name": "B",
+            "position": 1
+          }
+        ],
+        "identifier": "2228a24d-87fc-4bf5-bc40-3b7486c33a49",
+        "kept": true,
+        "name": "status",
+        "position": 1
+      }
+    ],
+    "properties": {}
+  },
+  "_links": {
+    "file": {
+      "href": "/api/filesystem/files/1a552255-3f2a-407d-9270-2813af4c1a74"
+    },
+    "self": {
+      "href": "/api/filesystem/workbooks/1a552255-3f2a-407d-9270-2813af4c1a74"
+    }
+  }
+}

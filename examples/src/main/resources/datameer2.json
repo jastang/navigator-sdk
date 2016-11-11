@@ -1,0 +1,16 @@
+{
+  "counters": {
+    "IMPORT_RECORDS": 494400,
+    "IMPORT_BYTES": 23911522,
+    "IMPORT_DROPPED_RECORDS": 0,
+    "IMPORT_PREVIEW_RECORDS": 5000,
+    "IMPORT_OUTPUT_BYTES": 24444883,
+    "IMPORT_DROPPED_SPLITS": 0,
+    "IMPORT_OUTPUT_PARTITIONS": 0
+  },
+  "failureCount": 0,
+  "jobStatus": "COMPLETED",
+  "startTime": "2012-07-06 18:19:09.0",
+  "stopTime": "2012-07-06 18:21:07.0",
+  "successCount": 494400
+}
