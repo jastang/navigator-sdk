@@ -6,6 +6,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import com.cloudera.nav.sdk.examples.datameer.json.DMWorkbook;
+import com.cloudera.nav.sdk.examples.datameer.json.JobDetails;
+
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -15,7 +17,7 @@ import java.io.Reader;
 public class Main {
     public static void main(String[] args) throws IOException {
         //JSON Parsing
-        String example = Main.class.getClassLoader().getResource("datameer.json").getPath();
+        String example = Main.class.getClassLoader().getResource("datameer2.json").getPath();
         Reader reader = new FileReader(example);
         try {
             BufferedReader br = new BufferedReader(reader);
@@ -23,14 +25,15 @@ public class Main {
             GsonBuilder gsonBuilder = new GsonBuilder();
             Gson gson = gsonBuilder.create();
 
-            DMWorkbook wb = gson.fromJson(br, DMWorkbook.class);
+            //DMWorkbook wb = gson.fromJson(br, DMWorkbook.class);
+            JobDetails jd = gson.fromJson(br, JobDetails.class);
 
-            System.out.println(wb.getWorkbook().getVersion());
+            System.out.println(jd.toString());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         //Post entities to Navigator
-        CustomLineageCreator clc = new CustomLineageCreator(Main.class.getClassLoader().getResource("sample.conf").getPath());
-        clc.run();
+        //CustomLineageCreator clc = new CustomLineageCreator(Main.class.getClassLoader().getResource("sample.conf").getPath());
+        //clc.run();
     }
 }

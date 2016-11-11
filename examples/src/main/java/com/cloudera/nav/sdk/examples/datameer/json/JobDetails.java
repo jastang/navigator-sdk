@@ -40,11 +40,11 @@ public class JobDetails {
     public String getJobStatus() { return this.jobStatus; }
 
     //todo: use date formatting and data type
-    public String getStartTime() { return this.getStartTime(); }
+    public String getStartTime() { return this.startTime; }
 
-    public String getStopTime() { return this.getStopTime(); }
+    public String getStopTime() { return this.stopTime; }
 
-    public long getSuccessCount() { return this.getSuccessCount(); }
+    public long getSuccessCount() { return this.successCount; }
 
     public void setCounters(Counters value) { this.counters = value; }
 
@@ -61,8 +61,13 @@ public class JobDetails {
     @Override
     public String toString() {
         return new StringBuilder()
-                .append("JobDetails{")
-                //implement
+                .append("JobDetails{").append('\n')
+                .append("successcount=").append(getSuccessCount()).append('\n')
+                .append("failurecount=").append(getFailureCount()).append('\n')
+                .append("jobstatus=").append(getJobStatus()).append('\n')
+                .append("starttime=").append(getStartTime()).append('\n')
+                .append("stoptime=").append(getStopTime()).append('\n')
+                .append("counters=").append(getCounters().toString()).append('\n')
                 .append('}')
                 .toString();
     }

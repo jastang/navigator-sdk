@@ -66,10 +66,14 @@ public class Counters {
     @Override
     public String toString(){
         return new StringBuilder()
-                .append("counters{")
-                .append("importrecords=").append(getImportRecords()).append('\n')
-                .append("importbytes=").append(getImportBytes()).append('\n')
-                //etc
+                .append("counters{").append('\n').append('\t')
+                .append("importrecords=").append(getImportRecords()).append('\n').append('\t')
+                .append("importbytes=").append(getImportBytes()).append('\n').append('\t')
+                .append("importdroppedrecords=").append(getImportDroppedRecords()).append('\n').append('\t')
+                .append("importpreviewrecords=").append(getPreviewRecords()).append('\n').append('\t')
+                .append("importoutputbytes=").append(getOutputBytes()).append('\n').append('\t')
+                .append("importdroppedsplits=").append(getImportDroppedSplits()).append('\n').append('\t')
+                .append("importoutputpartitions=").append(getImportDroppedSplits()).append('\n')
                 .append('}')
                 .toString();
     }
