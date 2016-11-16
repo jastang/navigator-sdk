@@ -18,8 +18,10 @@ package com.cloudera.nav.sdk.examples.datameer;
 
 import com.cloudera.nav.sdk.client.NavigatorPlugin;
 
+import com.cloudera.nav.sdk.client.writer.ResultSet;
 import com.cloudera.nav.sdk.examples.datameer.json.JobDetails;
 
+import com.cloudera.nav.sdk.model.SourceType;
 import org.springframework.web.client.RestTemplate;
 
 public class JobLineageCreator {
@@ -69,6 +71,22 @@ public class JobLineageCreator {
 
         //Write the Custom entity to Navigator
         //plugin.write();
+    }
+
+    /**
+     * No-REST API call test function for mapping JSON data from Datameer
+     * @param metadata
+     */
+    public void runLocal(JobDetails metadata) {
+        plugin.registerModels(getClass().getPackage().getName());
+        DatameerJobSummary djs = new DatameerJobSummary(plugin.getNamespace());
+        djs.setSourceType(SourceType.DATAMEER);
+        djs.setOwner("Jason");
+        djs.setOperationID("SOME-YARN-APP");
+        ResultSet results = plugin.write(djs);
+        if (results.hasErrors()) {
+            throw new RuntimeException(results.toString());
+        }
     }
 
     public String getWorkbookID() {

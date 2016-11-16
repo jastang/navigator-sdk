@@ -1,13 +1,9 @@
 package com.cloudera.nav.sdk.main;
 
-import com.cloudera.nav.sdk.examples.lineage.CustomLineageCreator;
-
+import com.cloudera.nav.sdk.examples.datameer.JobLineageCreator;
+import com.cloudera.nav.sdk.examples.datameer.json.JobDetails;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import com.cloudera.nav.sdk.examples.datameer.json.DMWorkbook;
-import com.cloudera.nav.sdk.examples.datameer.json.JobDetails;
-
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -17,7 +13,8 @@ import java.io.Reader;
 public class Main {
     public static void main(String[] args) throws IOException {
         //JSON Parsing
-        String example = Main.class.getClassLoader().getResource("datameer2.json").getPath();
+        String example = args[1];
+                //Main.class.getClassLoader().getResource("datameer2.json").getPath();
         Reader reader = new FileReader(example);
         try {
             BufferedReader br = new BufferedReader(reader);
@@ -28,12 +25,20 @@ public class Main {
             //DMWorkbook wb = gson.fromJson(br, DMWorkbook.class);
             JobDetails jd = gson.fromJson(br, JobDetails.class);
 
-            System.out.println(jd.toString());
+            //System.out.println(jd.toString());
+            JobLineageCreator jlc = new JobLineageCreator(args[0]);
+            jlc.runLocal(jd);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         //Post entities to Navigator
-        //CustomLineageCreator clc = new CustomLineageCreator(Main.class.getClassLoader().getResource("sample.conf").getPath());
-        //clc.run();
+        //System.out.println(Main.class.getClassLoader().getResource("sample.conf").getPath());
+       /* String path = args[0];
+        String pigop = args[1];
+        String pigexec = args[2];
+        CustomLineageCreator clc = new CustomLineageCreator(path);
+        clc.setPigOperationId(pigop);
+        clc.setPigExecutionId(pigexec);
+        clc.run();*/
     }
 }
