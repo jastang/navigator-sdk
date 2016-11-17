@@ -17,11 +17,10 @@
 package com.cloudera.nav.sdk.examples.datameer;
 
 import com.cloudera.nav.sdk.client.NavigatorPlugin;
-
 import com.cloudera.nav.sdk.client.writer.ResultSet;
 import com.cloudera.nav.sdk.examples.datameer.json.JobDetails;
-
 import com.cloudera.nav.sdk.model.SourceType;
+import com.cloudera.nav.sdk.model.entities.EntityType;
 import org.springframework.web.client.RestTemplate;
 
 public class JobLineageCreator {
@@ -80,9 +79,12 @@ public class JobLineageCreator {
     public void runLocal(JobDetails metadata) {
         plugin.registerModels(getClass().getPackage().getName());
         DatameerJobSummary djs = new DatameerJobSummary(plugin.getNamespace());
-        djs.setSourceType(SourceType.DATAMEER);
+        //djs.setSourceType(SourceType.YARN);
         djs.setOwner("Jason");
         djs.setOperationID("SOME-YARN-APP");
+        //djs.setEntityType(EntityType.DATASET);
+        djs.setName("Datameer Job Details");
+        //djs.setTemplate(new StetsonScript(plugin.getNamespace()));
         ResultSet results = plugin.write(djs);
         if (results.hasErrors()) {
             throw new RuntimeException(results.toString());

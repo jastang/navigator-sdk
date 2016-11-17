@@ -17,9 +17,11 @@
 package com.cloudera.nav.sdk.examples.datameer;
 
 import com.cloudera.nav.sdk.model.CustomIdGenerator;
+import com.cloudera.nav.sdk.model.SourceType;
 import com.cloudera.nav.sdk.model.annotations.MClass;
 import com.cloudera.nav.sdk.model.annotations.MProperty;
 import com.cloudera.nav.sdk.model.entities.Entity;
+import com.cloudera.nav.sdk.model.entities.EntityType;
 import com.google.common.base.Preconditions;
 import org.apache.commons.lang.StringUtils;
 
@@ -27,6 +29,8 @@ import org.apache.commons.lang.StringUtils;
 public class DatameerJobSummary extends Entity {
 
     //Not using @MRelation for now ..
+    //@MRelation(role = RelationRole.TEMPLATE)
+
     @MProperty
     private String operationID;
 
@@ -37,10 +41,28 @@ public class DatameerJobSummary extends Entity {
 
     @Override
     public String generateId() {
-        return CustomIdGenerator.generateIdentity(getNamespace(),operationID);
+        return CustomIdGenerator.generateIdentity(getNamespace(), operationID);
     }
 
-    public void setOperationID(String id){
-        this.operationID=id;
+    public void setOperationID(String id) {
+        this.operationID = id;
     }
+
+    public String getOperationID() {
+        return this.operationID;
+    }
+
+    @Override
+    public SourceType getSourceType() {
+        return SourceType.DATAMEER;
+    }
+
+    @Override
+    public EntityType getEntityType() {
+        return EntityType.DATASET;
+    }
+
+    /*public void setTemplate(StetsonScript template) {
+        this.template = template;
+    }*/
 }
