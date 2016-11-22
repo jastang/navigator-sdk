@@ -45,6 +45,7 @@
         <avro.version>1.7.4</avro.version>
         <cdh5.version>cdh5.4.0</cdh5.version>
         <cdh5.hadoop.version>2.6.0-${cdh5.version}</cdh5.hadoop.version>
+        <kite-data-core.version>1.1.0</kite-data-core.version>
 
         <!-- properties based on jdk version -->
         <maxPermSize>-XX:MaxPermSize=256m</maxPermSize>
@@ -433,6 +434,11 @@
                 <groupId>com.google.code.gson</groupId>
                 <artifactId>gson</artifactId>
                 <version>2.8.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kitesdk</groupId>
+                <artifactId>kite-data-core</artifactId>
+                <version>${kite-data-core.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

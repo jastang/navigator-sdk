@@ -19,8 +19,6 @@ package com.cloudera.nav.sdk.examples.datameer;
 import com.cloudera.nav.sdk.client.NavigatorPlugin;
 import com.cloudera.nav.sdk.client.writer.ResultSet;
 import com.cloudera.nav.sdk.examples.datameer.json.JobDetails;
-import com.cloudera.nav.sdk.model.SourceType;
-import com.cloudera.nav.sdk.model.entities.EntityType;
 import org.springframework.web.client.RestTemplate;
 
 public class JobLineageCreator {
@@ -74,6 +72,7 @@ public class JobLineageCreator {
 
     /**
      * No-REST API call test function for mapping JSON data from Datameer
+     *
      * @param metadata
      */
     public void runLocal(JobDetails metadata) {
@@ -84,6 +83,8 @@ public class JobLineageCreator {
         djs.setOperationID("SOME-YARN-APP");
         //djs.setEntityType(EntityType.DATASET);
         djs.setName("Datameer Job Details");
+        djs.setJobStatus(metadata.getJobStatus());
+        djs.setSuccessCount(metadata.getSuccessCount());
         //djs.setTemplate(new StetsonScript(plugin.getNamespace()));
         ResultSet results = plugin.write(djs);
         if (results.hasErrors()) {

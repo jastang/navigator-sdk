@@ -14,7 +14,8 @@ import java.io.Reader;
 public class Main {
     public static void main(String[] args) throws IOException {
         //JSON Parsing
-        String example = Main.class.getClassLoader().getResource("datameer2.json").getPath();
+        String example = args[1];
+                //Main.class.getClassLoader().getResource("datameer2.json").getPath();
         Reader reader = new FileReader(example);
         try {
             BufferedReader br = new BufferedReader(reader);
@@ -26,7 +27,8 @@ public class Main {
             JobDetails jd = gson.fromJson(br, JobDetails.class);
 
             System.out.println(jd.toString());
-            JobLineageCreator jlc = new JobLineageCreator(Main.class.getClassLoader().getResource("sample.conf").getPath());
+            JobLineageCreator jlc = new JobLineageCreator(args[0]);
+                    //Main.class.getClassLoader().getResource("sample.conf").getPath());
             jlc.runLocal(jd);
         } catch (Exception e) {
             String st = ExceptionUtils.getFullStackTrace(e);

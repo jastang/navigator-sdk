@@ -24,6 +24,7 @@ import com.cloudera.nav.sdk.model.entities.Entity;
 import com.cloudera.nav.sdk.model.entities.EntityType;
 import com.google.common.base.Preconditions;
 import org.apache.commons.lang.StringUtils;
+import org.joda.time.Instant;
 
 @MClass(model = "datameer_job_summary")
 public class DatameerJobSummary extends Entity {
@@ -33,6 +34,18 @@ public class DatameerJobSummary extends Entity {
 
     @MProperty
     private String operationID;
+
+    @MProperty
+    private String jobStatus;
+
+    @MProperty
+    private long successCount;
+
+    @MProperty
+    private String startTime;
+
+    @MProperty
+    private String stopTime;
 
     public DatameerJobSummary(String namespace) {
         Preconditions.checkArgument(StringUtils.isNotEmpty(namespace));
@@ -60,6 +73,39 @@ public class DatameerJobSummary extends Entity {
     @Override
     public EntityType getEntityType() {
         return EntityType.DATASET;
+    }
+
+    public String getJobStatus() {
+        return jobStatus;
+    }
+
+    public void setJobStatus(String jobStatus) {
+        this.jobStatus = jobStatus;
+    }
+
+    public long getSuccessCount() {
+        return successCount;
+    }
+
+    public void setSuccessCount(long successCount) {
+        this.successCount = successCount;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+        this.setCreated(Instant.parse(this.startTime));
+    }
+
+    public String getStopTime() {
+        return stopTime;
+    }
+
+    public void setStopTime(String stopTime) {
+        this.stopTime = stopTime;
     }
 
     /*public void setTemplate(StetsonScript template) {
